@@ -9,3 +9,6 @@ python -m pip install --config-settings="--global-option=build_ext" `
                       
 
 leanblueprint pdf
+
+lake -R -Kenv=dev update
+DOCGEN_SRC="vscode"&&lake -R -Kenv=dev build MyPackage.Basic:docs
