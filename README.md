@@ -9,6 +9,8 @@ python -m pip install --config-settings="--global-option=build_ext" `
                       
 
 leanblueprint pdf
+
+lake exe cache get
 lake -R build
 lake -R -Kenv=dev update
 lake -R -Kenv=dev build
