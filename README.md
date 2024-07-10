@@ -9,6 +9,7 @@ python -m pip install --config-settings="--global-option=build_ext" `
                       
 
 leanblueprint pdf
-
+lake -R build
 lake -R -Kenv=dev update
+lake -R -Kenv=dev build
 DOCGEN_SRC="github"&&lake -R -Kenv=dev build MyPackage:docs
