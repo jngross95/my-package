@@ -12,6 +12,10 @@ package «my-package»  {
   --  "-lctranslate2"
   --]
   }
+
+
+
+
   -- add any additional package configuration options here
 
 require mathlib from git
@@ -25,6 +29,7 @@ require checkdecls from git "https://github.com/PatrickMassot/checkdecls.git"
 
 meta if get_config? env = some "dev" then
 require «doc-gen4» from git "https://github.com/leanprover/doc-gen4" @ "main"
+
 
 
 --require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.4.0"

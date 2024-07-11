@@ -1,22 +1,12 @@
-import Mathlib.Tactic.FieldSimp
-import Mathlib.Tactic.IntervalCases
-import Mathlib.Tactic.Set
-import Mathlib.Data.Set.Basic
 import Mathlib.Data.Real.Basic
-import Mathlib.Analysis.SpecialFunctions.Pow.Real
-import Mathlib.Analysis.SpecialFunctions.Log.Basic
-import Mathlib.Init.Algebra.Classes
-import Mathlib.Algebra.Group.Basic
---import LeanCopilot
---import LeanTeX.Basic
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.FieldSimp
+
 
 open Set
-
-
 open Real
 
-set_option diagnostics true
-set_option diagnostics.threshold 4
 
 example : 120 + 100 = 220 :=  by
  norm_num
