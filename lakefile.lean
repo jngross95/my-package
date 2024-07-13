@@ -19,7 +19,7 @@ package «my-package»  {
   -- add any additional package configuration options here
 
 require mathlib from git
-  "https://github.com/leanprover-community/mathlib4.git"
+  "https://github.com/leanprover-community/mathlib4.git" @"git#4.9.0"
 
 @[default_target]
 lean_lib «MyPackage» where
@@ -28,9 +28,9 @@ lean_lib «MyPackage» where
 require checkdecls from git "https://github.com/PatrickMassot/checkdecls.git"
 
 meta if get_config? env = some "dev" then
-require «doc-gen4» from git "https://github.com/leanprover/doc-gen4" @ "main"
+require «doc-gen4» from git "https://github.com/leanprover/doc-gen4" @ "git#4.9.0"
 
-
+--require Paperproof from git "https://github.com/Paper-Proof/paperproof.git"@"main"/"lean"
 
 --require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.4.0"
 --require LeanTeX from git "https://github.com/kmill/LeanTeX.git" @ "main"
