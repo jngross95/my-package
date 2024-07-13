@@ -2,6 +2,7 @@ import Mathlib.Data.Real.Basic
 import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.FieldSimp
+import Mathlib.Algebra.Group.Even
 import Paperproof
 
 open Set
@@ -34,7 +35,7 @@ example (x y z : ℝ) : x * y * z = y * (x * z) := by
 theorem lemma6  : ((1: ℚ) / 321) * (1 / (3*1)) = (1*1)/(321*(3*1)) := by
   have n1: ¬(321=(0:ℚ)) := by norm_num
   have n2: ¬(3*1=(0:ℚ)) := by norm_num
-  rw [ lemma5 (1:ℚ) 321 1 (3*1) n1 n2 ]
+  apply  lemma5 (1:ℚ) 321 1 (3*1) n1 n2
   --have h := lemma5 (1:ℚ) 321 1 (3*1) n1 n2
   --exact h
 
@@ -55,9 +56,10 @@ example (P Q: Prop) : P ∧ Q → Q ∧ P := by
   apply right
   apply left
 
---#search hallo
+-- hallo
 
---example (n k : ℕ) (h : n = 2 * k) : even n := by
---  apply Nat.even_of_exists_two_mul,
---  use k,
---  exact h,
+--example (n k : ℕ) (h : n = 2 * k) : Even n := by
+  --apply?
+  --apply Nat.even_of_exists_two_mul,
+  --use k,
+  --exact h,
