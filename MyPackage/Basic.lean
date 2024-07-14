@@ -63,3 +63,25 @@ example (P Q: Prop) : P ∧ Q → Q ∧ P := by
   --apply Nat.even_of_exists_two_mul,
   --use k,
   --exact h,
+
+
+example (A B : Prop) (h: A ∨ B) : B ∨ A := by
+  obtain a | b := h
+  exact  (Or.inr a)
+  exact  (Or.inl b)
+
+example (A B : Prop) (h: A ∨ B) : B ∨ A := by
+  obtain a | b := h
+  right
+  exact a
+  left
+  exact b
+
+example (h : C ∨ O) : O ∨ C := by
+  cases h with
+  | inl hc => -- Fall C
+    right
+    exact hc
+  | inr ho => -- Fall O
+    left
+    exact ho
