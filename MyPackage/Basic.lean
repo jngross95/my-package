@@ -4,9 +4,15 @@ import Mathlib.Tactic.Ring
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Algebra.Group.Even
 import Paperproof
+import LeanTeX
+import Lean
 
+
+open Lean Meta
 open Set
 open Real
+
+namespace MyPackage
 
 
 example : 120 + 100 = 220 :=  by
@@ -164,3 +170,51 @@ contradiction
 --have x :=  iff_mp h
 --have y :=  iff_mpr h
 --exact And.intro x y
+
+
+/-- info: \forall \alpha : \mathbf{Type},\ \forall \beta : \mathbf{Type},\ \forall f : \alpha \to \beta,\ \forall x : \alpha,\ \forall y : \alpha,\ f(x) = f(y) \implies x = y -/
+#guard_msgs in #latex (α β : Type) → (f : α → β) → ∀ {x y : α}, f x = f y → x = y
+
+-- Hilfsfunktion zum Überprüfen, ob eine Deklaration ein Theorem ist
+def isTheorem (constInfo : ConstantInfo) : Bool :=
+  match constInfo.value? with
+  | some _ => true
+  | none   => false
+-- Hilfsfunktion zum Überprüfen, ob ein Name im aktuellen Modul ist
+def isInCurrentModule (name : Name) (currModule : Name) : Bool :=
+  --true
+  name.getPrefix == currModule
+
+--def instantiateMVars [Monad m] [MonadMCtx m] (e : Expr) : m Expr := do
+/- def ff (e:term)  := do
+    Elab.Command.runTermElabM fun _ => do
+      let e1 ← Elab.Term.elabTerm e none
+
+      Elab.Term.synthesizeSyntheticMVarsNoPostponing
+
+      let e2 ← instantiateMVars e1
+      let res ← run_latexPP e2 {}
+      return  ""
+    --let res := " ".intercalate (res |>.split Char.isWhitespace |>.filter (not ·.isEmpty))
+ -/
+def printTheoremsOfCurrentModule : MetaM Unit := do
+  -- Holen Sie sich die aktuelle Umgebung
+  let env ← getEnv
+  -- Holen Sie sich das aktuelle Modul
+  let currModule := `MyPackage
+  --IO.println s!"!!currModule!! {currModule.lastComponentAsString}"
+  -- Iterieren Sie durch alle Deklarationen in der Umgebung
+  for decl in env.constants.toList do
+    let (name, constantInfo) := decl
+    -- Überprüfen Sie, ob die Deklaration im aktuellen Modul ist und ein Theorem ist
+    if isTheorem constantInfo && isInCurrentModule name currModule then
+      let type ← inferType (mkConst name (constantInfo.levelParams.map mkLevelParam))
+
+
+
+      let fmtType ← PrettyPrinter.ppExpr type
+      IO.println s!"!Theorem! {name} : {fmtType}"
+
+
+
+#eval printTheoremsOfCurrentModule
