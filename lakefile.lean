@@ -33,3 +33,6 @@ require Paperproof from git "https://github.com/Paper-Proof/paperproof.git"@"mai
 
 --require LeanCopilot from git "https://github.com/lean-dojo/LeanCopilot.git" @ "v1.4.0"
 require LeanTeX from git "https://github.com/kmill/LeanTeX.git" @ "main"
+
+require checkdecls from git "https://github.com/PatrickMassot/checkdecls.git"
+
