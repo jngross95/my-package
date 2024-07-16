@@ -2,6 +2,8 @@
 
 https://github.com/ImperialCollegeLondon/M40001_lean/tree/master/src
 
+https://github.com/kmill/LeanTeX/issues/3
+
 
 python -m pip install --config-settings="--global-option=build_ext" `
                       --config-settings="--global-option=-IC:\Program Files\Graphviz\include" `
