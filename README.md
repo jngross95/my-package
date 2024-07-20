@@ -1,5 +1,8 @@
 # my-package
 
+https://jngross95.github.io/my-package/docs/
+https://jngross95.github.io/my-package/blueprint/
+
 https://github.com/ImperialCollegeLondon/M40001_lean/tree/master/src
 
 https://github.com/kmill/LeanTeX/issues/3
@@ -21,6 +24,7 @@ lake -R -Kenv=dev build
 DOCGEN_SRC="github"&&lake -R -Kenv=dev build MyPackage:docs
 
 https://github.com/alexkassil/natural_number_game_lean4.git
+
 
 
 
