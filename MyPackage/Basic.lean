@@ -28,12 +28,12 @@ theorem dritte_lemma  (a b : ℝ) : (2*a+b)^2 = 4*a^2+4*a*b+b^2 :=
 by ring
 
 /--
-das soll da erscheinen!!
+das soll da erscheinen3!!
 $$
 \frac{a}{c} \cdot \frac{b}{d} = \frac{a \cdot b}{c \cdot d}
 $$
 -/
-theorem lemma_5
+theorem lemma5
  {R : Type*} [Field R]  (a b c d: R) (hb : b ≠ 0) (hd : d ≠ 0)  :
       (a / b) * (c / d) = (a*c) / (b*d) := by
 field_simp [hb, hd]
@@ -46,7 +46,7 @@ example (x y z : ℝ) : x * y * z = y * (x * z) := by
 theorem lemma6  : ((1: ℚ) / 321) * (1 / (3*1)) = (1*1)/(321*(3*1)) := by
   have n1: ¬(321=(0:ℚ)) := by norm_num
   have n2: ¬(3*1=(0:ℚ)) := by norm_num
-  apply  lemma_5 (1:ℚ) 321 1 (3*1) n1 n2
+  apply  lemma5 (1:ℚ) 321 1 (3*1) n1 n2
   --have h := lemma5 (1:ℚ) 321 1 (3*1) n1 n2
   --exact h
 
