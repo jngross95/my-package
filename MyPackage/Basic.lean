@@ -141,6 +141,40 @@ exact λ pa: P ∧ A => ((h pa.left) pa.right)
 example (A P : Prop) (h: (P ∧ A) → False) : P → (A → False) := by
 exact λ (p:P) (a:A) => h ⟨p , a⟩
 
+-------
+example : True := by
+constructor
+example : True := by
+exact True.intro
+
+example (h: False) : False := by
+apply h
+
+example (h: False) : True := by
+constructor
+
+-----------
+example (P : Prop) (h: P) : P := by
+apply h
+
+----------  AND
+example (P Q : Prop) (p: P) (q:Q) : P ∧ Q:= by
+constructor
+apply p
+apply q
+
+example (P Q : Prop) (h: P ∧ Q) :  Q := by
+let q := h.right
+apply q
+
+
+
+
+
+
+
+
+
 --------
 --example (A : Prop)(h : ((A->False)->False)->False) : A -> False := by
 --exact λ a:A => (h λ         )
@@ -217,4 +251,4 @@ def printTheoremsOfCurrentModule : MetaM Unit := do
 
 
 
-#eval printTheoremsOfCurrentModule
+--#eval printTheoremsOfCurrentModule
