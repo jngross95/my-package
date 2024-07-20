@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1721469777.99686 "print.tex" "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.pdf" "print" 1721469780.18203 0
-  "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.aux" 1721469779 196 ca1985c604e55478866151da9477c2fa "pdflatex"
-  "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.out" 1721469779 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["pdflatex"] 1721486974.92625 "print.tex" "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.pdf" "print" 1721486977.26622 0
+  "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.aux" 1721486976 151 1087a38a791066fb0a59795ffeb395e0 "pdflatex"
+  "C:/Users/jngro/proj/lean/my-package/blueprint/print/print.out" 1721486976 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1720252217 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1720267920 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "c:/texlive/2024/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1720250389 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -83,7 +83,7 @@
   "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1720250285 42007 0b741a3c21a5ca32b40e3846e75b3548 ""
   "c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1720268218 10868675 f703800f6b3e214a4e1bb8d6908c0d19 ""
   "c:/texlive/2024/texmf.cnf" 1720267952 713 e69b156964470283e0530f5060668171 ""
-  "content.tex" 1721469654 694 79038eb3b56a67a59178c01afa2ece22 ""
+  "content.tex" 1721471032 653 af2cac7ebc67db3a3ae7f5124cc7307a ""
   "macros/common.tex" 1721160573 142 10e8f81f8b8dcf47997f6d1d7aa55e98 ""
   "macros/print.tex" 1721160573 1101 87627b2ec24fef68edc71c13f43f7bab ""
   "print.out" 1721469752 0 d41d8cd98f00b204e9800998ecf8427e ""
