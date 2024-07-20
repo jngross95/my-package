@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.6)  20 JUL 2024 12:06
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.6)  20 JUL 2024 12:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -271,7 +271,8 @@ File: l3backend-xetex.def 2024-05-08 L3 backend support: XeTeX
 \l__pdf_internal_box=\box55
 \g__pdf_backend_annotation_int=\count293
 \g__pdf_backend_link_int=\count294
-) (./web.aux)
+)
+No file web.aux.
 \openout1 = `web.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 25.
@@ -284,7 +285,7 @@ LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 25.
 LaTeX Font Info:    ... okay on input line 25.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 25.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 25.
- (c:/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+(c:/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 25.
@@ -321,8 +322,10 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
 [1] (./content.tex
-./content.tex:14: Undefined control sequence.
-l.14     \lean
+./content.tex:13: Undefined control sequence.
+<recently read> \lean 
+                      
+l.13     \lean
               {MyPackage.lemma5}
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -330,8 +333,8 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-./content.tex:15: Undefined control sequence.
-l.15     \leanok
+./content.tex:14: Undefined control sequence.
+l.14     \leanok
                 
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -342,10 +345,10 @@ and I'll forget about whatever was undefined.
 Missing character: There is no 𝕊 ("1D54A) in font cmmi10!
 Missing character: There is no ℝ ("211D) in font cmmi10!
 Missing character: There is no ↦ ("21A6) in font cmr10!
-./content.tex:22: Undefined control sequence.
+./content.tex:21: Undefined control sequence.
 <recently read> \leanok 
                         
-l.22 \leanok
+l.21 \leanok
             
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -362,9 +365,6 @@ L3 programming layer <2024-05-27>
  ***********
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
 Package rerunfilecheck Warning: File `web.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
@@ -374,10 +374,10 @@ Package rerunfilecheck Info: Checksums for `web.out':
 (rerunfilecheck)             After:  D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 9040 strings out of 474240
- 137615 string characters out of 5745919
+ 9037 strings out of 474240
+ 137571 string characters out of 5745919
  1920560 words of memory out of 5000000
- 31630 multiletter control sequences out of 15000+600000
+ 31629 multiletter control sequences out of 15000+600000
  564813 words of font info for 68 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  72i,6n,79p,590b,347s stack positions out of 10000i,1000n,20000p,200000b,200000s

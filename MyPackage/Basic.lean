@@ -146,7 +146,8 @@ exact λ pa: P ∧ A => ((h pa.left) pa.right)
 example (A P : Prop) (h: (P ∧ A) → False) : P → (A → False) := by
 exact λ (p:P) (a:A) => h ⟨p , a⟩
 
--------
+
+------- True / False
 example : True := by
 constructor
 example : True := by
@@ -158,9 +159,6 @@ apply h
 example (h: False) : True := by
 constructor
 
------------
-example (P : Prop) (h: P) : P := by
-apply h
 
 ----------  AND
 example (P Q : Prop) (p: P) (q:Q) : P ∧ Q:= by
@@ -169,14 +167,62 @@ apply p
 apply q
 
 example (P Q : Prop) (h: P ∧ Q) :  Q := by
-let q := h.right
-apply q
+obtain ⟨_, h2⟩ := h
+apply h2
+
+----------  Or
+example (P Q : Prop)  (h: Q) :  P ∨ Q := by
+right
+apply h
+
+example (P Q : Prop) (h0: ¬P) (h: P ∨ Q) :  Q := by
+obtain h1|h2 := h
+contradiction
+apply h2
+
+----------  implies -->
+
+example (P Q R : Prop)  (h1: P → R) (h2: R → Q):  P → Q := by
+intro h
+exact h2 (h1 h)
+
+example (P Q: Prop)  (h0: P) (h1: P → Q) :  Q := by
+apply h1
+exact h0
+
+----------  not
+
+example (P Q: Prop)  (h0: P → False) :  ¬P := by
+intro h
+apply (h0 h)
 
 
+example (P Q: Prop)  (h: ¬P) :  P -> False := by
+apply h
+
+------------- if and only if  ↔
+example (P Q : Prop)   (h1: P → Q)  (h2:Q → P) : P ↔ Q:= by
+constructor
+apply h1
+apply h2
+
+example (P Q : Prop)  (h: P ↔ Q) : (P → Q) ∧ (Q → P) := by
+obtain ⟨h1, h2⟩ := h
+constructor
+apply h1
+apply h2
 
 
+---------------  exists /forall
+example (P: Nat→Prop) (h: (P 12))  : ∃ (x:Nat) , (P x)  := by
+use 12
 
-
+example (P Q: Nat→Prop) (h1: ∃ (x:Nat) , (P x))  (h2: ∀x: Nat, Q x = P x)   : ∃ (x:Nat) , (Q x)  := by
+obtain ⟨y, hx⟩ := h1
+use y
+specialize  h2 y
+rewrite  [h2]
+apply hx
 
 
 

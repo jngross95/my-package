@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1721469997.9066 "c:/Users/jngro/proj/lean/my-package/blueprint/src/web.tex" "web.pdf" "web" 1721469999.71187 2
+["pdflatex"] 1721471036.01148 "c:/Users/jngro/proj/lean/my-package/blueprint/src/web.tex" "web.pdf" "web" 1721471037.6664 2
   "blueprint.sty" 1721160573 33 380e7b64027817bb38aa9902f30ab0d0 ""
   "c:/Users/jngro/proj/lean/my-package/blueprint/src/web.tex" 1721469942 724 bf760a79ea89538c1aa3aec8cb63a442 ""
   "c:/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1720252217 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -68,11 +68,11 @@
   "c:/texlive/2024/texmf-dist/web2c/texmf.cnf" 1720250285 42007 0b741a3c21a5ca32b40e3846e75b3548 ""
   "c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt" 1720268218 10868675 f703800f6b3e214a4e1bb8d6908c0d19 ""
   "c:/texlive/2024/texmf.cnf" 1720267952 713 e69b156964470283e0530f5060668171 ""
-  "content.tex" 1721469994 684 c9c7278f5753af0b62f9c6974b1fe4b9 ""
+  "content.tex" 1721471032 653 af2cac7ebc67db3a3ae7f5124cc7307a ""
   "macros/common.tex" 1721160573 142 10e8f81f8b8dcf47997f6d1d7aa55e98 ""
   "macros/web.tex" 1721160573 260 cdb7c9ac756cf5815dc98c2bb10a4f5b ""
-  "web.aux" 1721469998 219 561773ce762abce7df72959a4e47a692 "pdflatex"
-  "web.out" 1721469998 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "web.aux" 1721471036 174 7f6b3b8142578797a968f897b9caa92c "pdflatex"
+  "web.out" 1721471036 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   "web.tex" 1721469942 724 bf760a79ea89538c1aa3aec8cb63a442 ""
   (generated)
   "web.aux"
