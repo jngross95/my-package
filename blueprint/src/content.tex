@@ -7,12 +7,11 @@
 % can start with a \section or \chapter for instance.
 
 
-
-
-\begin{theorem}
+\begin{theorem}{Brüche multiplizieren}
     \lean{MyPackage.frac_mul}
     \leanok
 
+Seien $a,b,c,d \in R$ wobei $c \neq 0$ und $d \neq 0$ dann gilt
 $$
 \frac{a}{c} \cdot \frac{b}{d} = \frac{a \cdot b}{c \cdot d}
 $$
@@ -20,13 +19,13 @@ $$
 \end{theorem}
     
 
-\begin{proof}
-\leanok
-This obviously follows from what we did so far.
-
-
-sage matrix:
-$$
+%\begin{proof}
+%\leanok
+%This obviously follows from what we did so far.%
+%%
+%
+%sage matrix:
+%$$
 %\sage{matrix([[1, 2], [3,4]])^2}
-$$
-\end{proof}
+%$$
+%\end{proof}
