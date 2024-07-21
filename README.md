@@ -13,6 +13,10 @@ python -m pip install --config-settings="--global-option=build_ext" `
                       --config-settings="--global-option=-LC:\Program Files\Graphviz\lib" `
                       pygraphviz
 
+
+cd blueprint\print
+copy ..\src\sagetex.py
+bash sage print.sagetex.sage
                       
 
 leanblueprint pdf

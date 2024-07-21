@@ -1,5 +1,0 @@
-PWD C:/Users/jngro/proj/lean/my-package/blueprint/src
-INPUT c:/texlive/2024/texmf.cnf
-INPUT c:/texlive/2024/texmf-dist/web2c/texmf.cnf
-INPUT c:/texlive/2024/texmf-var/web2c/xetex/xelatex.fmt
-INPUT print.tex
