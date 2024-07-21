@@ -4,6 +4,9 @@ https://jngross95.github.io/my-package/docs/
 
 https://jngross95.github.io/my-package/blueprint/
 
+https://jngross95.github.io/my-package/blueprint.pdf
+
+
 https://github.com/ImperialCollegeLondon/M40001_lean/tree/master/src
 
 https://github.com/kmill/LeanTeX/issues/3
