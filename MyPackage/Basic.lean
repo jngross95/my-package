@@ -6,7 +6,7 @@ import Mathlib.Algebra.Group.Even
 import Paperproof
 import LeanTeX
 import Lean
-
+import Mathlib.Order.RelClasses
 
 open Lean Meta
 open Set
@@ -300,6 +300,52 @@ def printTheoremsOfCurrentModule : MetaM Unit := do
       let fmtType ← PrettyPrinter.ppExpr type
       IO.println s!"!Theorem! {name} : {fmtType}"
 
+
+
+def gcd (m n : Nat) : Nat :=
+  if m = 0 then
+    n
+  else
+    gcd (n % m) m
+  termination_by m
+  decreasing_by
+    simp_wf;
+    apply Nat.mod_lt _ (Nat.zero_lt_of_ne_zero _);
+    assumption
+
+/- def GCD
+  (p : ℕ × ℕ) (g : ∀ q, q < p → ℕ) : ℕ :=
+  let m := p.1
+  let n := p.2
+
+  if h:m=0 then
+    n
+  else
+    have hh: (n % m) < m := by
+        apply Nat.mod_lt _ (Nat.zero_lt_of_ne_zero _);
+        assumption
+    have predProof:  ((n % m), m) < (m,n) := by
+      sorry
+    (g ((n % m) , m)) predProof
+
+
+def gcd' : ℕ × ℕ -> ℕ :=
+  WellFounded.fix
+
+
+    (λ (p : ℕ × ℕ) (g : ∀ q, q < p → ℕ) =>
+     (GCD p g)
+
+
+      )
+
+
+def gcd2 (m n : ℕ) : ℕ := gcd' (m, n)
+
+#eval gcd2 48 18 -- 6 -/
+
+
+#eval gcd 65 5
 
 
 --#eval printTheoremsOfCurrentModule
