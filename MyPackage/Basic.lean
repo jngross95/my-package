@@ -310,7 +310,8 @@ def gcd (m n : Nat) : Nat :=
   termination_by m
   decreasing_by
     simp_wf;
-    apply Nat.mod_lt _ (Nat.zero_lt_of_ne_zero _);
+    apply Nat.mod_lt
+    apply Nat.zero_lt_of_ne_zero;
     assumption
 
 /- def GCD
