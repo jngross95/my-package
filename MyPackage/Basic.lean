@@ -386,7 +386,10 @@ theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
       exact add_nonneg x.left x.right
     simp at hhh
     by_cases mhhh: m=0 ∧ n=0
-    · rw [zpow_add' (Or.inr (Or.inr mhhh))]
+    · apply zpow_add'
+      right
+      right
+      assumption
     · simp [not_and_or] at mhhh
       by_cases hhhh: m=0
       · simp [hhhh]
