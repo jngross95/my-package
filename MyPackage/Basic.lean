@@ -7,12 +7,16 @@ import Paperproof
 import LeanTeX
 import Lean
 import Mathlib.Order.RelClasses
+import Mathlib.Init.Algebra.Classes
+import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Algebra.GroupWithZero.Basic
+import Mathlib.Init.Data.Int.Basic
 
 open Lean Meta
 open Set
 open Real
 
-namespace MyPackage
+--namespace MyPackage
 
 
 example : 120 + 100 = 220 :=  by
@@ -346,7 +350,54 @@ def gcd2 (m n : ℕ) : ℕ := gcd' (m, n)
 #eval gcd2 48 18 -- 6 -/
 
 
-#eval gcd 65 5
+--#eval gcd 65 5
 
 
 --#eval printTheoremsOfCurrentModule
+
+-- Beispieltheorem, das zeigt, dass die Koerzension korrekt ist
+theorem coe_nat_to_int (n : Units ℝ) : (n : ℝ) = n := by
+  rfl
+
+
+theorem th1  (x: (Units ℝ)) : (x * 1) = x := by
+  let g:Monoid  (Units ℝ) := inferInstance
+  let xx := g.mul_one x
+  exact xx
+
+
+
+lemma my_pow_add {G: Type*} [Monoid G]
+              (a : G) (m n : ℕ): a ^ (m + n) = a ^ m * a ^ n := by
+  exact pow_add a m n
+
+theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+  exact zpow_add₀ h m n
+
+--lemma zpow_add' {m n : ℤ} (h : a ≠ 0 ∨ m + n ≠ 0 ∨ m = 0 ∧ n = 0) :
+--    a ^ (m + n) = a ^ m * a ^ n := by
+
+theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+  by_cases hhh: a ≠ 0
+  · exact zpow_add₀ hhh m n
+  · have x := (not_imp_not.mpr h) hhh
+    simp at x
+    have _: m+n >= 0 := by
+      exact add_nonneg x.left x.right
+    simp at hhh
+    by_cases mhhh: m=0 ∧ n=0
+    · rw [zpow_add' (Or.inr (Or.inr mhhh))]
+    · simp [not_and_or] at mhhh
+      by_cases hhhh: m=0
+      · simp [hhhh]
+      · simp at hhhh
+        have k:0 ≠ m := Ne.symm hhhh
+        have k:m > 0 := lt_of_le_of_ne x.left k
+        have k:m+n ≠ 0 := by
+          linarith
+        rw [zpow_add' (Or.inr (Or.inl k))]
+
+
+
+theorem r_pow_add {x : ℝ} (hx : x>0) (a b : ℝ) : x^(a + b) = x^a * x^b :=
+  rpow_add hx a b

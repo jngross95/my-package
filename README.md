@@ -160,3 +160,11 @@ right
 apply (h h_1)
 left
 apply h_1
+
+
+----
+
+exact? 
+apply?
+
+https://www.moogle.ai/
