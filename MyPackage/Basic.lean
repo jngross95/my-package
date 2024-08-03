@@ -393,10 +393,10 @@ theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
       · simp at hhhh
         have k:0 ≠ m := Ne.symm hhhh
         have k:m > 0 := lt_of_le_of_ne x.left k
-        have k:m+n ≠ 0 := by
-          linarith
-        rw [zpow_add' (Or.inr (Or.inl k))]
-
+        apply zpow_add'
+        right
+        left
+        linarith
 
 
 theorem r_pow_add {x : ℝ} (hx : x>0) (a b : ℝ) : x^(a + b) = x^a * x^b :=
