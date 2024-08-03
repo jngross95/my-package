@@ -401,6 +401,33 @@ theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
         left
         linarith
 
+theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+  apply zpow_add'
+  by_cases hh:m<0 ∨ n < 0
+  · left
+    apply h hh
+  · right
+    by_cases hhh: m=0 ∧ n = 0
+    · right
+      assumption
+    · left
+      simp at hh
+      simp at hhh
+      by_cases h: m=0
+      · have k: ¬n = 0 := by apply (hhh h)
+        have k:0 ≠ n := Ne.symm k
+        have k:n > 0 := lt_of_le_of_ne hh.right k
+        linarith
+      · have k: ¬m = 0 := by apply h
+        have k:0 ≠ m := Ne.symm k
+        have k:m > 0 := lt_of_le_of_ne hh.left k
+        linarith
+
+
+
+
+
+
 
 theorem r_pow_add {x : ℝ} (hx : x>0) (a b : ℝ) : x^(a + b) = x^a * x^b :=
   rpow_add hx a b
