@@ -15,6 +15,7 @@ import Mathlib.Init.Data.Int.Basic
 open Lean Meta
 open Set
 open Real
+open Mathlib.Tactic
 
 --namespace MyPackage
 
@@ -422,6 +423,34 @@ theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
         have k:0 ≠ m := Ne.symm k
         have k:m > 0 := lt_of_le_of_ne hh.left k
         linarith
+
+
+
+theorem ee  {a b : ℕ}: ((↑a):ℤ)  + ↑b = ↑(a+b) := by
+rw[<-Ring.natCast_add]
+rfl
+rfl
+
+
+theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b := by
+  lift a to ℕ
+  assumption
+  lift b to ℕ
+  assumption
+  rw[ee]
+  set c := a+b with hhh
+  simp
+  rw[hhh]
+  apply pow_add
+
+
+
+
+
+  --lift a to ℕ using h1
+  --lift b to ℕ using h2
+  --simp
+  --rw [<-pow_add x a b]
 
 
 
