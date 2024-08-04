@@ -356,53 +356,16 @@ def gcd2 (m n : ℕ) : ℕ := gcd' (m, n)
 
 --#eval printTheoremsOfCurrentModule
 
--- Beispieltheorem, das zeigt, dass die Koerzension korrekt ist
-theorem coe_nat_to_int (n : Units ℝ) : (n : ℝ) = n := by
-  rfl
 
-
-theorem th1  (x: (Units ℝ)) : (x * 1) = x := by
-  let g:Monoid  (Units ℝ) := inferInstance
-  let xx := g.mul_one x
-  exact xx
-
-
-
-lemma my_pow_add {G: Type*} [Monoid G]
-              (a : G) (m n : ℕ): a ^ (m + n) = a ^ m * a ^ n := by
-  exact pow_add a m n
-
-theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
-  exact zpow_add₀ h m n
+--theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+--  exact zpow_add₀ h m n
 
 --lemma zpow_add' {m n : ℤ} (h : a ≠ 0 ∨ m + n ≠ 0 ∨ m = 0 ∧ n = 0) :
 --    a ^ (m + n) = a ^ m * a ^ n := by
 
-theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
-  by_cases hhh: a ≠ 0
-  · exact zpow_add₀ hhh m n
-  · have x := (not_imp_not.mpr h) hhh
-    simp at x
-    have _: m+n >= 0 := by
-      exact add_nonneg x.left x.right
-    simp at hhh
-    by_cases mhhh: m=0 ∧ n=0
-    · apply zpow_add'
-      right
-      right
-      assumption
-    · simp [not_and_or] at mhhh
-      by_cases hhhh: m=0
-      · simp [hhhh]
-      · simp at hhhh
-        have k:0 ≠ m := Ne.symm hhhh
-        have k:m > 0 := lt_of_le_of_ne x.left k
-        apply zpow_add'
-        right
-        left
-        linarith
-
-theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ)
+     (h: (m<0 ∨ n<0) -> a ≠ 0)
+     : a ^ (m + n) = a ^ m * a ^ n := by
   apply zpow_add'
   by_cases hh:m<0 ∨ n < 0
   · left
@@ -426,13 +389,14 @@ theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
 
 
 
---theorem ee {G: Type*} [CommSemiring R] {a b : ℕ}: ((↑a):R)  + ↑b = ↑(a+b) := by
---rw[<-Ring.natCast_add]
---rfl
---rfl
+lemma my_pow_add {M: Type*} [Monoid M] (x : M) (a b : ℕ) :
+        x ^ (a + b) = x ^ a * x ^ b := by
+  apply pow_add
 
 
-theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b := by
+theorem my_zpow_add1 {G: Type*} [GroupWithZero G] {x: G} {a b : ℤ}
+        (h1: a>=0) (h2: b>=0)  :
+        x^(a + b) = x^a * x^b := by
   lift a to ℕ
   assumption
   lift b to ℕ
@@ -444,20 +408,14 @@ theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b :
   rw[hhh]
   apply pow_add
 
+theorem my_zpow_add2 {G: Type*} [GroupWithZero G] (x : G) (a b : ℤ)
+       (h: x ≠ 0)  :
+       x ^ (a + b) = x ^ a * x ^ b := by
+  apply zpow_add'
+  apply Or.inl
+  assumption
 
-
-
-
-  --lift a to ℕ using h1
-  --lift b to ℕ using h2
-  --simp
-  --rw [<-pow_add x a b]
-
-
-
-
-
-
-
-theorem r_pow_add {x : ℝ} (hx : x>0) (a b : ℝ) : x^(a + b) = x^a * x^b :=
-  rpow_add hx a b
+theorem my_rpow_add {x : ℝ} (hx : x>0) (a b : ℝ) :
+       x^(a + b) = x^a * x^b := by
+  apply rpow_add
+  assumption
