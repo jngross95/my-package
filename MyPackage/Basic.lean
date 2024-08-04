@@ -356,36 +356,26 @@ def gcd2 (m n : ℕ) : ℕ := gcd' (m, n)
 
 --#eval printTheoremsOfCurrentModule
 
-
---theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
---  exact zpow_add₀ h m n
-
---lemma zpow_add' {m n : ℤ} (h : a ≠ 0 ∨ m + n ≠ 0 ∨ m = 0 ∧ n = 0) :
---    a ^ (m + n) = a ^ m * a ^ n := by
-
-theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ)
-     (h: (m<0 ∨ n<0) -> a ≠ 0)
+theorem my_zpow_add11 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ)
+    (h1: m>=0) (h2: n>=0)
      : a ^ (m + n) = a ^ m * a ^ n := by
   apply zpow_add'
-  by_cases hh:m<0 ∨ n < 0
-  · left
-    apply h hh
+  by_cases hhh: m=0 ∧ n = 0
   · right
-    by_cases hhh: m=0 ∧ n = 0
-    · right
-      assumption
-    · left
-      simp at hh
-      simp at hhh
-      by_cases h: m=0
-      · have k: ¬n = 0 := by apply (hhh h)
-        have k:0 ≠ n := Ne.symm k
-        have k:n > 0 := lt_of_le_of_ne hh.right k
-        linarith
-      · have k: ¬m = 0 := by apply h
-        have k:0 ≠ m := Ne.symm k
-        have k:m > 0 := lt_of_le_of_ne hh.left k
-        linarith
+    right
+    assumption
+  · right
+    left
+    simp at hhh
+    by_cases h: m=0
+    · have k: ¬n = 0 := by apply (hhh h)
+      have k:0 ≠ n := Ne.symm k
+      have k:n > 0 := lt_of_le_of_ne h2 k
+      linarith
+    · have k: ¬m = 0 := by apply h
+      have k:0 ≠ m := Ne.symm k
+      have k:m > 0 := lt_of_le_of_ne h1 k
+      linarith
 
 
 
