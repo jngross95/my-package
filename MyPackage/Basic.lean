@@ -10,7 +10,7 @@ import Mathlib.Order.RelClasses
 import Mathlib.Init.Algebra.Classes
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Algebra.GroupWithZero.Basic
-import Mathlib.Init.Data.Int.Basic
+--import Mathlib.Init.Data.Int.Basic
 
 open Lean Meta
 open Set
@@ -426,10 +426,10 @@ theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
 
 
 
-theorem ee {G: Type*} [CommSemiring R] {a b : ℕ}: ((↑a):R)  + ↑b = ↑(a+b) := by
-rw[<-Ring.natCast_add]
-rfl
-rfl
+--theorem ee {G: Type*} [CommSemiring R] {a b : ℕ}: ((↑a):R)  + ↑b = ↑(a+b) := by
+--rw[<-Ring.natCast_add]
+--rfl
+--rfl
 
 
 theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b := by
@@ -437,6 +437,7 @@ theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b :
   assumption
   lift b to ℕ
   assumption
+  have ee : ((↑a):ℤ)  + ↑b = ↑(a+b) := by simp
   rw[ee]
   set c := a+b with hhh
   simp
