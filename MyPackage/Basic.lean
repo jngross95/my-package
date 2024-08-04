@@ -426,7 +426,7 @@ theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 �
 
 
 
-theorem ee  {a b : ℕ}: ((↑a):ℤ)  + ↑b = ↑(a+b) := by
+theorem ee {G: Type*} [CommSemiring R] {a b : ℕ}: ((↑a):R)  + ↑b = ↑(a+b) := by
 rw[<-Ring.natCast_add]
 rfl
 rfl
