@@ -4,3 +4,4 @@ leanblueprint pdf
 #sage print.sagetex.sage
 #cd ../../
 #leanblueprint pdf
+#lake -R -Kenv=dev build MyPackage:docs
