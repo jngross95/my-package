@@ -17,7 +17,7 @@ open Set
 open Real
 open Mathlib.Tactic
 
---namespace MyPackage
+namespace MyPackage
 
 
 example : 120 + 100 = 220 :=  by
