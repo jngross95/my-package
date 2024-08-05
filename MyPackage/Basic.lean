@@ -3,7 +3,7 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Algebra.Group.Even
-import Paperproof
+--import Paperproof
 import LeanTeX
 import Lean
 import Mathlib.Order.RelClasses
@@ -161,7 +161,7 @@ exact True.intro
 example (h: False) : False := by
 apply h
 
-example (h: False) : True := by
+example (_: False) : True := by
 constructor
 
 
@@ -197,12 +197,12 @@ exact h0
 
 ----------  not
 
-example (P Q: Prop)  (h0: P → False) :  ¬P := by
+example (P _: Prop)  (h0: P → False) :  ¬P := by
 intro h
 apply (h0 h)
 
 
-example (P Q: Prop)  (h: ¬P) :  P -> False := by
+example (P _: Prop)  (h: ¬P) :  P -> False := by
 apply h
 
 ------------- if and only if  ↔
