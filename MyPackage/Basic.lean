@@ -3,21 +3,21 @@ import Mathlib.Tactic.NormNum
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.FieldSimp
 import Mathlib.Algebra.Group.Even
-import Paperproof
+--import Paperproof
 import LeanTeX
 import Lean
 import Mathlib.Order.RelClasses
 import Mathlib.Init.Algebra.Classes
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
 import Mathlib.Algebra.GroupWithZero.Basic
-import Mathlib.Init.Data.Int.Basic
+--import Mathlib.Init.Data.Int.Basic
 
 open Lean Meta
 open Set
 open Real
 open Mathlib.Tactic
 
---namespace MyPackage
+namespace MyPackage
 
 
 example : 120 + 100 = 220 :=  by
@@ -161,7 +161,7 @@ exact True.intro
 example (h: False) : False := by
 apply h
 
-example (h: False) : True := by
+example (_: False) : True := by
 constructor
 
 
@@ -197,12 +197,12 @@ exact h0
 
 ----------  not
 
-example (P Q: Prop)  (h0: P → False) :  ¬P := by
+example (P _: Prop)  (h0: P → False) :  ¬P := by
 intro h
 apply (h0 h)
 
 
-example (P Q: Prop)  (h: ¬P) :  P -> False := by
+example (P _: Prop)  (h: ¬P) :  P -> False := by
 apply h
 
 ------------- if and only if  ↔
@@ -356,102 +356,56 @@ def gcd2 (m n : ℕ) : ℕ := gcd' (m, n)
 
 --#eval printTheoremsOfCurrentModule
 
--- Beispieltheorem, das zeigt, dass die Koerzension korrekt ist
-theorem coe_nat_to_int (n : Units ℝ) : (n : ℝ) = n := by
-  rfl
-
-
-theorem th1  (x: (Units ℝ)) : (x * 1) = x := by
-  let g:Monoid  (Units ℝ) := inferInstance
-  let xx := g.mul_one x
-  exact xx
-
-
-
-lemma my_pow_add {G: Type*} [Monoid G]
-              (a : G) (m n : ℕ): a ^ (m + n) = a ^ m * a ^ n := by
-  exact pow_add a m n
-
-theorem my_zpow_add {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
-  exact zpow_add₀ h m n
-
---lemma zpow_add' {m n : ℤ} (h : a ≠ 0 ∨ m + n ≠ 0 ∨ m = 0 ∧ n = 0) :
---    a ^ (m + n) = a ^ m * a ^ n := by
-
-theorem my_zpow_add3 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
-  by_cases hhh: a ≠ 0
-  · exact zpow_add₀ hhh m n
-  · have x := (not_imp_not.mpr h) hhh
-    simp at x
-    have _: m+n >= 0 := by
-      exact add_nonneg x.left x.right
-    simp at hhh
-    by_cases mhhh: m=0 ∧ n=0
-    · apply zpow_add'
-      right
-      right
-      assumption
-    · simp [not_and_or] at mhhh
-      by_cases hhhh: m=0
-      · simp [hhhh]
-      · simp at hhhh
-        have k:0 ≠ m := Ne.symm hhhh
-        have k:m > 0 := lt_of_le_of_ne x.left k
-        apply zpow_add'
-        right
-        left
-        linarith
-
-theorem my_zpow_add4 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ) (h: (m<0 ∨ n<0) -> a ≠ 0): a ^ (m + n) = a ^ m * a ^ n := by
+theorem my_zpow_add11 {G: Type*} [GroupWithZero G] (a : G) (m n : ℤ)
+    (h1: m>=0) (h2: n>=0)
+     : a ^ (m + n) = a ^ m * a ^ n := by
   apply zpow_add'
-  by_cases hh:m<0 ∨ n < 0
-  · left
-    apply h hh
+  by_cases hhh: m=0 ∧ n = 0
   · right
-    by_cases hhh: m=0 ∧ n = 0
-    · right
-      assumption
-    · left
-      simp at hh
-      simp at hhh
-      by_cases h: m=0
-      · have k: ¬n = 0 := by apply (hhh h)
-        have k:0 ≠ n := Ne.symm k
-        have k:n > 0 := lt_of_le_of_ne hh.right k
-        linarith
-      · have k: ¬m = 0 := by apply h
-        have k:0 ≠ m := Ne.symm k
-        have k:m > 0 := lt_of_le_of_ne hh.left k
-        linarith
+    right
+    assumption
+  · right
+    left
+    simp at hhh
+    by_cases h: m=0
+    · have k: ¬n = 0 := by apply (hhh h)
+      have k:0 ≠ n := Ne.symm k
+      have k:n > 0 := lt_of_le_of_ne h2 k
+      linarith
+    · have k: ¬m = 0 := by apply h
+      have k:0 ≠ m := Ne.symm k
+      have k:m > 0 := lt_of_le_of_ne h1 k
+      linarith
 
 
-theorem hhh {x: ℚ} {a b : ℤ} (h1: a>=0)  (h2: b>=0): x^(a + b) = x^a * x^b := by
+
+lemma my_pow_add {M: Type*} [Monoid M] (x : M) (a b : ℕ) :
+        x ^ (a + b) = x ^ a * x ^ b := by
+  apply pow_add
+
+
+theorem my_zpow_add1 {G: Type*} [GroupWithZero G] {x: G} {a b : ℤ}
+        (h1: a>=0) (h2: b>=0)  :
+        x^(a + b) = x^a * x^b := by
   lift a to ℕ
   assumption
   lift b to ℕ
   assumption
-  have zee:  (↑a:ℤ) + ↑b = ↑(a+b) := by simp
-  rw[zee]
+  have ee : ((↑a):ℤ)  + ↑b = ↑(a+b) := by simp
+  rw[ee]
   set c := a+b with hhh
   simp
   rw[hhh]
   apply pow_add
 
+theorem my_zpow_add2 {G: Type*} [GroupWithZero G] (x : G) (a b : ℤ)
+       (h: x ≠ 0)  :
+       x ^ (a + b) = x ^ a * x ^ b := by
+  apply zpow_add'
+  apply Or.inl
+  assumption
 
-
-
-
-
-  --lift a to ℕ using h1
-  --lift b to ℕ using h2
-  --simp
-  --rw [<-pow_add x a b]
-
-
-
-
-
-
-
-theorem r_pow_add {x : ℝ} (hx : x>0) (a b : ℝ) : x^(a + b) = x^a * x^b :=
-  rpow_add hx a b
+theorem my_rpow_add {x : ℝ} (hx : x>0) (a b : ℝ) :
+       x^(a + b) = x^a * x^b := by
+  apply rpow_add
+  assumption
