@@ -44,6 +44,37 @@ theorem frac_mul
 field_simp [hb, hd]
 
 
+theorem axiom_mul_inv_cancel
+ {R : Type*} [g: GroupWithZero R]  (a: R) (h : a ≠ 0):
+      a * a⁻¹  =  1     := by
+  apply GroupWithZero.mul_inv_cancel
+  assumption
+
+
+-- theorem mul_eq
+--  {R : Type*} [g: GroupWithZero R]  (a b c: R) (h : c ≠ 0):
+--       a=b ↔ a*c = b*c     := by
+
+--   constructor
+--   intro hh
+--   rw[hh]
+--   intro hh
+--   have hhh : a*(c*c⁻¹) = b*(c*c⁻¹) := by
+--     apply hh
+
+
+
+
+
+theorem ff
+ {R : Type*} [Field R]  (a b: R) (ha : a ≠ 0) (hb : b ≠ 0) :
+    (a*b)⁻¹ = a⁻¹ * b⁻¹  := by
+  field_simp [hb, ha]
+
+
+
+
+
 example (x y z : ℝ) : x * y * z = y * (x * z) := by
   rw [mul_comm x y]
   rw [mul_assoc y x z]
